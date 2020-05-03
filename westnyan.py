@@ -23,7 +23,7 @@ score = 0
 maxScore = max(Settings.Obstacle.frequence / 2, 1)
 tuyauApparition = max(Settings.Obstacle.frequenceMin, random.randint(0, Settings.Obstacle.frequence - maxScore))
 
-# fonction qui permet au jeu de mettre a jour le score du joueur #
+# fonction qui permet au jeu de mettre a jour le score les obstacles et les parametres joueur #
 def actualiserJeu():
     root.after(Settings.Fenetre.delaisMiseAJour(), actualiserJeu)
     global obstacles
