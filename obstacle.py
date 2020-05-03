@@ -26,6 +26,7 @@ class Obstacle :
                 self.deleted = True
                 self.canvas.delete(self.obstacle)
 
+# En fonction du score, le nombre de tuyau qui apparait augmente, et le sens inversé aussi #
     @staticmethod 
     def generateObstacle(score, canvas):
         randomInverse = random.randint(0, 100)

@@ -36,7 +36,7 @@ class Joueur :
         else :
             self.canvas.move(self.chat, 0, 0 - Settings.Joueur.vitesseChute * 2)
 
-
+# fonction qui utilise la position du chat pour le faire de tomber avec la vitesseChute, ou fait quil marche sur le sol #
     def tombe(self):
         position = self.canvas.coords(self.chat)
         positionY = position[1] + (Settings.Joueur.hauteurChat / 2)
