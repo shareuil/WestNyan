@@ -2,9 +2,9 @@ import os
 
 # tous les parametres modifiables #
 class Settings(object):
-    toucheJ1 = "<space>"
+
     class Chats(object):
-        images = ['images/chat1.gif', 'images/cat1.png', 'images/cat1.png']
+        images = ['images/chat1.gif', 'images/chat1.gif', 'images/chat1.gif']
 
 
     class Obstacle (object):
@@ -28,26 +28,34 @@ class Settings(object):
         largeur = 960
         vitesseDeplacment = 3
 
-
     class Fenetre(object):
         largeur = 960
         hauteur = 720
-        images = ['images/fond.jpg']
+        fond = 'images/fond.png'
         hz = 24
         # https://docs.quantifiedcode.com/python-anti-patterns/correctness/method_has_no_argument.html
         @staticmethod 
         def delaisMiseAJour ():
             return int(1000 / Settings.Fenetre.hz)
 
+    class ImagePerdu (object) :
+        largeur = 1000
+        hauteur = 140
+        img = 'images/titre.png'
+
     class Joueur(object):
+        nombreJoueur = 2
         positionX = 160
         positionY = 80
         largeurChat = 81
         hauteurChat = 50
         maxImageGif = 12
         vitesseChute = 14
+        touches = ["<space>", "<Return>", "a"]
+
 
     class Score(object):
-        positionX = 160
+        positionX = 720
         positionY = 80
-        police = "{Arial} 16"
+        color = "white"
+        police = "{Arial} 32"

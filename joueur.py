@@ -4,7 +4,6 @@ from settings import Settings
 ##creation de personnage##
 
 class Joueur :
-    posHorizontale = Settings.Joueur.positionX
     posVerticale = Settings.Joueur.positionY
     indexGif = 0
     saute = False
@@ -13,6 +12,7 @@ class Joueur :
     score = 0
 
     def __init__(self, id, img, touche, canvas) :
+        self.posHorizontale = Settings.Joueur.positionX + id * (Settings.Joueur.largeurChat + 10)
         self.id = id
         self.img = img
         self.touche = touche
@@ -35,8 +35,8 @@ class Joueur :
             self.canvas.move(self.chat, 0, 0 - positionY)
             self.posVerticale -= positionY
         else :
-            self.canvas.move(self.chat, 0, 0 - Settings.Joueur.vitesseChute * 1.8)
-            self.posVerticale -= Settings.Joueur.vitesseChute * 1.8
+            self.canvas.move(self.chat, 0, 0 - Settings.Joueur.vitesseChute * 1.5)
+            self.posVerticale -= Settings.Joueur.vitesseChute * 1.5
 
 # fonction qui utilise la position du chat pour le faire de tomber avec la vitesseChute, ou fait quil marche sur le sol #
     def tombe(self):
