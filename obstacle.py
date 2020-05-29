@@ -5,15 +5,16 @@ from settings import Settings
 
 class Obstacle :
 
-
-    def __init__(self, img, canvas, y) :
+    def __init__(self, img, canvas, y, inverse = False) :
         self.x = Settings.Fenetre.largeur
         self.deleted = False
         self.img = img
         self.imgObstacle = tk.PhotoImage(file=img)
         self.y = y
+        self.inverse = inverse
         self.obstacle = canvas.create_image(self.x, self.y, image=self.imgObstacle)
         self.canvas = canvas
+        self.passe = False
 
     def deplacement (self) :
         self.canvas.move(self.obstacle, 0 - Settings.Obstacle.vitesseDeplacment, 0)
@@ -38,5 +39,5 @@ class Obstacle :
         image = Settings.Obstacle.images[1] if inverse else Settings.Obstacle.images[0]
         position = 0 + Settings.Obstacle.hauteur / 2 if inverse else Settings.Fenetre.hauteur - Settings.Fenetre.hauteurSol - Settings.Obstacle.hauteur / 2
 
-        return Obstacle(image, canvas, position + decalage)
+        return Obstacle(image, canvas, position + decalage, inverse)
 

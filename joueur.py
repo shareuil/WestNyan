@@ -31,10 +31,12 @@ class Joueur :
     def monte(self):
         position = self.canvas.coords(self.chat)
         positionY = position[1] - (Settings.Joueur.hauteurChat / 2)
-        if positionY < Settings.Joueur.vitesseChute * 1.5:
+        if positionY < Settings.Joueur.vitesseChute * 1.8:
             self.canvas.move(self.chat, 0, 0 - positionY)
+            self.posVerticale -= positionY
         else :
-            self.canvas.move(self.chat, 0, 0 - Settings.Joueur.vitesseChute * 2)
+            self.canvas.move(self.chat, 0, 0 - Settings.Joueur.vitesseChute * 1.8)
+            self.posVerticale -= Settings.Joueur.vitesseChute * 1.8
 
 # fonction qui utilise la position du chat pour le faire de tomber avec la vitesseChute, ou fait quil marche sur le sol #
     def tombe(self):
@@ -43,8 +45,10 @@ class Joueur :
         yMax = Settings.Fenetre.hauteur - Settings.Fenetre.hauteurSol
         if positionY >= yMax :
             self.canvas.move(self.chat, 0, yMax - positionY)
+            self.posVerticale += yMax - positionY
         else :
             self.canvas.move(self.chat, 0, Settings.Joueur.vitesseChute)
+            self.posVerticale += Settings.Joueur.vitesseChute
         
 
     def update(self):

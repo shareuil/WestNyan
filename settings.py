@@ -1,4 +1,5 @@
 import os
+
 # tous les parametres modifiables #
 class Settings(object):
     toucheJ1 = "<space>"
@@ -13,6 +14,18 @@ class Settings(object):
         largeur = 122
         frequence = 60
         frequenceMin = 25
+
+    class Sol (object):
+        images = ['images/sol/1b.jpg', 'images/sol/2b.jpg', 'images/sol/3b.jpg']
+        vitesseDeplacment = 9
+        hauteur = 300
+        largeur = 122
+
+    class Nuage (object):
+        images = ['images/tuyauBas.png', 'images/tuyauHaut.png']
+        vitesseDeplacment = 5
+        hauteur = 300
+        largeur = 120
 
     class Fenetre(object):
         largeur = 960
@@ -31,5 +44,9 @@ class Settings(object):
         largeurChat = 81
         hauteurChat = 50
         maxImageGif = 12
-        vitesseChute = 12
+        vitesseChute = 14
 
+    class Score(object):
+        positionX = 160
+        positionY = 80
+        police = "{Arial} 16"
