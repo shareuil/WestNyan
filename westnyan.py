@@ -17,6 +17,7 @@ canvas.pack()
 # liste de un element car qu'un seul joueur actuellement #
 joueur1 = Joueur(1, Settings.Chats.images[0], Settings.toucheJ1, canvas)
 joueurs = [joueur1]
+# définit la position du premier obstacle a fin que ca lance le jeu de facon facile #
 obstacle1 = Obstacle(Settings.Obstacle.images[0], canvas, Settings.Fenetre.hauteur - Settings.Fenetre.hauteurSol - (Settings.Obstacle.hauteur / 2) + 200)
 obstacles = [obstacle1]
 score = 0
@@ -38,6 +39,7 @@ def verifPass(obstacle: Obstacle, joueur: Joueur):
         return True
     return False
 
+# fonction qui permet au jeu de mettre a jour le score les obstacles et les parametres joueur #
 def actualiserJeu():
     root.after(Settings.Fenetre.delaisMiseAJour(), actualiserJeu)
     global obstacles
@@ -80,11 +82,11 @@ def actualiserJeu():
     canvas.update()
 
     
-#permet d'avoir le chat qui bouge en fonction de la touche appuyee#
+# permet d'avoir le chat qui bouge en fonction de la touche appuyee #
 for joueur in joueurs :
     root.bind(joueur.touche, joueur.saut)
 
 root.after(Settings.Fenetre.delaisMiseAJour(), actualiserJeu)
 
-#ne rien ecrire sous main
+# ne rien ecrire sous main #
 root.mainloop()
