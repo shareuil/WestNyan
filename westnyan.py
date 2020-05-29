@@ -46,7 +46,11 @@ def actualiserJeu():
     global score
     global joueurs
     global tuyauApparition
+<<<<<<< HEAD
+
+=======
     
+>>>>>>> 53e1f9a4bb60cec0989fd325e210b301c1fda7d2
     perdu = True
     for obstacle in obstacles :
         obstacle.update()
