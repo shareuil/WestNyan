@@ -4,7 +4,7 @@ import os
 class Settings(object):
 
     class Chats(object):
-        images = ['images/chat1.gif', 'images/chat1.gif', 'images/chat1.gif']
+        images = ['images/chat-taco.gif', 'images/chat1.gif', 'images/chat1.gif']
 
 
     class Obstacle (object):
@@ -51,7 +51,7 @@ class Settings(object):
         hauteurChat = 50
         maxImageGif = 12
         vitesseChute = 14
-        touches = ["<space>", "<Return>", "a"]
+        touches = ["<space>", "<Return>"]
 
 
     class Score(object):
