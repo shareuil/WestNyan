@@ -5,6 +5,7 @@ import random
 from settings import Settings
 from joueur import Joueur
 from obstacle import Obstacle
+from score import Score
 
 root = Tk.Tk()
 root.resizable(width = False, height = False)
@@ -21,6 +22,21 @@ obstacles = [obstacle1]
 score = 0
 maxScore = max(Settings.Obstacle.frequence / 2, 1)
 tuyauApparition = max(Settings.Obstacle.frequenceMin, random.randint(0, Settings.Obstacle.frequence - maxScore))
+texteScore = Score(canvas)
+
+def verifColision(obstacle: Obstacle, joueur: Joueur):
+    if obstacle.x - (Settings.Obstacle.largeur / 2) < joueur.posHorizontale + (Settings.Joueur.largeurChat / 2) and obstacle.x + (Settings.Obstacle.largeur / 2) > joueur.posHorizontale - (Settings.Joueur.largeurChat / 2):
+        if obstacle.inverse:
+            if obstacle.y + (Settings.Obstacle.hauteur / 2) > joueur.posVerticale - (Settings.Joueur.hauteurChat / 2):
+                joueur.enVie = False
+        else:
+            if obstacle.y - (Settings.Obstacle.hauteur / 2) < joueur.posVerticale + (Settings.Joueur.hauteurChat / 2):
+                joueur.enVie = False
+
+def verifPass(obstacle: Obstacle, joueur: Joueur):
+    if obstacle.x + (Settings.Obstacle.largeur / 2) < joueur.posHorizontale - (Settings.Joueur.largeurChat / 2):
+        return True
+    return False
 
 def actualiserJeu():
     root.after(Settings.Fenetre.delaisMiseAJour(), actualiserJeu)
@@ -29,27 +45,40 @@ def actualiserJeu():
     global joueurs
     global tuyauApparition
     
+    perdu = True
     for obstacle in obstacles :
         obstacle.update()
         if obstacle.deleted :
             obstacles.remove(obstacle)
-            score += 1
-            print(score)
             for joueur in joueurs:
-                joueur.score += 1
+                if joueur.enVie:
+                    joueur.score += 1
+        else:
+            for joueur in joueurs:
+                if joueur.enVie:
+                    verifColision(obstacle, joueur)
+                    if obstacle.passe == False and verifPass(obstacle, joueur):
+                        score += 1
+                        obstacle.passe = True
     for joueur in joueurs :
         if joueur.enVie:
             joueur.update()
+            perdu = False
+    if perdu == False:
+        texteScore.mettreajour(score)
     if tuyauApparition == 0 :
         tuyau = Obstacle.generateObstacle(score, canvas)
         obstacles.append(tuyau)
         maxScore = max(Settings.Obstacle.frequence / 2, 1)
         tuyauApparition = max(Settings.Obstacle.frequenceMin, random.randint(0, Settings.Obstacle.frequence - maxScore))
+        tuyauApparition = max(Settings.Obstacle.frequenceMin, random.randint(0, Settings.Obstacle.frequence - score * 2))
     else :
         tuyauApparition -= 1
 
+    canvas.lift(texteScore.label)
     canvas.update_idletasks()
     canvas.update()
+
     
 #permet d'avoir le chat qui bouge en fonction de la touche appuyee#
 for joueur in joueurs :
