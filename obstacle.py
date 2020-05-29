@@ -37,7 +37,7 @@ class Obstacle :
         decalage = randomDecalage if inverse == False else 0 - randomDecalage
 
         image = Settings.Obstacle.images[1] if inverse else Settings.Obstacle.images[0]
-        position = 0 + Settings.Obstacle.hauteur / 2 if inverse else Settings.Fenetre.hauteur - Settings.Fenetre.hauteurSol - Settings.Obstacle.hauteur / 2
+        position = 0 + Settings.Obstacle.hauteur / 2 if inverse else Settings.Fenetre.hauteur - Settings.Sol.hauteur - Settings.Obstacle.hauteur / 2
 
         return Obstacle(image, canvas, position + decalage, inverse)
 

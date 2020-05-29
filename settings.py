@@ -13,41 +13,27 @@ class Settings(object):
         hauteur = 300
         largeur = 122
         frequence = 60
-        frequenceMin = 25
+        frequenceMin = 30
 
     class Sol (object):
-<<<<<<< HEAD
-        images = ['images/sol/1b.jpg', 'images/sol/2b.jpg', 'images/sol/3b.jpg']
-        positionX = 960
-        positionY = 300
-        vitesseDeplacment = 8
+        images = ['images/sol/1.png', 'images/sol/2.png', 'images/sol/3.png']
+        hauteur = 97
+        largeur = 960
+        vitesseDeplacment = 10
 
 
     class Nuage (object):
         images = ['images/nuage/1b.png', 'images/nuage/2b.png', 'images/nuage/3b.png']
-        positionX = 960
-        positionY = 300
+        hauteur = 658
+        largeur = 960
         vitesseDeplacment = 3
 
-=======
-        images = ['images/tuyauBas.png', 'images/tuyauHaut.png']
-        vitesseDeplacment = 9
-        hauteur = 300
-        largeur = 122
-
-    class Nuage (object):
-        images = ['images/tuyauBas.png', 'images/tuyauHaut.png']
-        vitesseDeplacment = 5
-        hauteur = 300
-        largeur = 120
->>>>>>> 53e1f9a4bb60cec0989fd325e210b301c1fda7d2
 
     class Fenetre(object):
         largeur = 960
         hauteur = 720
         images = ['images/fond.jpg']
         hz = 24
-        hauteurSol = 160
         # https://docs.quantifiedcode.com/python-anti-patterns/correctness/method_has_no_argument.html
         @staticmethod 
         def delaisMiseAJour ():

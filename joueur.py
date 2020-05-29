@@ -42,7 +42,7 @@ class Joueur :
     def tombe(self):
         position = self.canvas.coords(self.chat)
         positionY = position[1] + (Settings.Joueur.hauteurChat / 2)
-        yMax = Settings.Fenetre.hauteur - Settings.Fenetre.hauteurSol
+        yMax = Settings.Fenetre.hauteur - Settings.Sol.hauteur
         if positionY >= yMax :
             self.canvas.move(self.chat, 0, yMax - positionY)
             self.posVerticale += yMax - positionY

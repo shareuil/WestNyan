@@ -6,19 +6,33 @@ from settings import Settings
 from joueur import Joueur
 from obstacle import Obstacle
 from score import Score
+from solnuage import Nuage, Sol
+
 
 root = Tk.Tk()
 root.resizable(width = False, height = False)
 root.title("Westnyan")
 root.geometry(str(Settings.Fenetre.largeur) + 'x' + str(Settings.Fenetre.hauteur))
 
-canvas = Tk.Canvas(root, bg = Settings.Fenetre.backgroundColor , width = Settings.Fenetre.largeur , height = Settings.Fenetre.hauteur)
+canvas = Tk.Canvas(root, bg = "cyan" , width = Settings.Fenetre.largeur , height = Settings.Fenetre.hauteur)
 canvas.pack()
+
+# creation du fond #
+nuages : [Nuage] = []
+for i in range(3) :
+    nuage = Nuage(Settings.Nuage.images[i], canvas, Settings.Nuage.largeur * i)
+    nuages.append (nuage)
+sols : [Sol] = []
+for i in range(3) :
+    sol = Sol(Settings.Sol.images[i], canvas, Settings.Sol.largeur * i)
+    sols.append (sol)
+
 # liste de un element car qu'un seul joueur actuellement #
 joueur1 = Joueur(1, Settings.Chats.images[0], Settings.toucheJ1, canvas)
 joueurs = [joueur1]
+
 # définit la position du premier obstacle a fin que ca lance le jeu de facon facile #
-obstacle1 = Obstacle(Settings.Obstacle.images[0], canvas, Settings.Fenetre.hauteur - Settings.Fenetre.hauteurSol - (Settings.Obstacle.hauteur / 2) + 200)
+obstacle1 = Obstacle(Settings.Obstacle.images[0], canvas, Settings.Fenetre.hauteur - Settings.Sol.hauteur - (Settings.Obstacle.hauteur / 2) + 200)
 obstacles = [obstacle1]
 score = 0
 maxScore = max(Settings.Obstacle.frequence / 2, 1)
@@ -46,12 +60,16 @@ def actualiserJeu():
     global score
     global joueurs
     global tuyauApparition
-<<<<<<< HEAD
-
-=======
-    
->>>>>>> 53e1f9a4bb60cec0989fd325e210b301c1fda7d2
     perdu = True
+    for nuage in nuages :
+        nuage.deplacement()
+        if nuage.x <= 0 - Settings.Nuage.largeur :
+            nuage.deplacerVers (2*Settings.Nuage.largeur)
+    for sol in sols :
+        sol.deplacement()
+        if sol.x <= 0 - Settings.Sol.largeur :
+            sol.deplacerVers (2*Settings.Sol.largeur)
+
     for obstacle in obstacles :
         obstacle.update()
         if obstacle.deleted :
@@ -81,6 +99,10 @@ def actualiserJeu():
     else :
         tuyauApparition -= 1
 
+    for sol in sols :
+        canvas.lift(sol.sol)
+
+    # permer de mettre le score toujours en haut
     canvas.lift(texteScore.label)
     canvas.update_idletasks()
     canvas.update()
