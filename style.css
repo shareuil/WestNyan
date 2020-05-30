@@ -3,15 +3,33 @@
     background-position: bottom;
     background-size: cover;
 }
+
+button {
+    width:85px;
+	height:85px;
+	background:#fafafa;
+	box-shadow:2px 2px 8px #aaa;
+	font:bold 13px Arial;
+	border-radius:50%;
+    color:#555;
+    margin: 10px;
+}
+
+.boutons {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
 .slide {
-    width: 100vw;
+    width: 90vw;
     height: 100vh;
 }
 
 .wrapper {
     display: flex;
     flex-direction: row;
-    width: 400vw;
+    width: 270vw;
     transform: rotate(90deg) translateY(-100vh);
     transform-origin: top left;
 }
@@ -19,24 +37,27 @@
 .one {
     background-image: url(images/site/1.png);
     background-position: bottom;
-    background-size: cover;
+    background-size: initial;
+    background-repeat: repeat-x;
+    position: relative;
 
 }
 
 .two {
-    background-image: url(images/site/2-2.png);
+    background-image: url(images/site/2.png);
     background-position: bottom;
-    background-size: cover;
+    background-size: initial;
+    background-repeat: repeat-x;
+    position: relative;
 }
 
 .three {
     background-image: url(images/site/3.png);
     background-position: bottom;
-    background-size: cover;
-}
-
-.four {
-
+    background-size: 100%;
+    background-size: initial;
+    background-repeat: repeat-x;
+    position: relative;
 }
 
 .outer-wrapper {
