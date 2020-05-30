@@ -11,7 +11,9 @@ class Score:
         self.texte = "0"
         self.deleted = False
         self.label = canvas.create_text(self.x, self.y, font=Settings.Score.police, text=self.texte)
+        canvas.itemconfigure(self.label, fill=Settings.Score.color)
         self.canvas = canvas
 
     def mettreajour(self, score) :   
         self.canvas.itemconfigure(self.label, text=str(score))
+        
